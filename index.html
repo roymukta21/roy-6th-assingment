@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Green Earth - Plant a Tree</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Manrope:wght@200..800&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <link rel="stylesheet" href="style/style.css" />
+  </head>
+
+  <body class="bg-green-50" style="font-family: 'Inter', sans-serif">
+    <!-- Navbar -->
+    <nav
+      class="flex items-center justify-between bg-green-900 text-white px-6 py-4"
+    >
+      <div class="font-bold text-2xl">🌱 Green Earth</div>
+      <ul class="flex space-x-6">
+        <li><a href="#" class="hover:text-yellow-300">Home</a></li>
+        <li><a href="#about" class="hover:text-yellow-300">About</a></li>
+        <li><a href="#impact" class="hover:text-yellow-300">Impact</a></li>
+      </ul>
+      <button
+        class="bg-yellow-400 text-green-700 px-4 py-2 rounded-full hover:bg-yellow-500"
+      >
+        Plant a Tree
+      </button>
+    </nav>
+
+    <!-- hero section -->
+    <div class="flex items-center justify-center bg-green-100">
+      <img
+        class="h-[250px] w-[400px] p-5"
+        src="./B12A06-Green-Earth/assets/hero-leaf1.png"
+        alt=""
+      />
+      <div class="grid items-center justify-center text-center">
+        <h1 class="font-bold text-4xl p-3">Plant a Tree, Grow a Future</h1>
+        <p class="text-xs p-3">
+          Join our mission to plant 1 million trees and make the Earth greener
+          for future generations.
+        </p>
+        <button
+          onclick="window.location.href='join.html'"
+          class="bg-yellow-400 text-green-700 px-4 py-2 rounded-full hover:bg-green-500 transition max-w-xs mx-auto mb-14"
+        >
+          Get Involved
+        </button>
+      </div>
+      <img
+        class="h-[250px] w-[400px] p-5"
+        src="./B12A06-Green-Earth/assets/hero-leaf2.png"
+        alt=""
+      />
+    </div>
+
+    <!-- main section -->
+    <main class="container mx-auto px-4 py-6 grid grid-cols-12 gap-6">
+      <!-- Categories Section -->
+      <aside class="col-span-3">
+        <h2 class="text-xl font-bold mb-4">🌴 Categories</h2>
+        <div id="category-container" class="flex flex-col gap-2">
+          <!-- Dynamic Category Buttons will load here -->
+        </div>
+      </aside>
+
+      <!-- Plants Section -->
+      <section class="col-span-6">
+        <!-- Spinner -->
+        <div id="loading-spinner" class="hidden text-center py-10">
+          <span
+            class="loading loading-spinner loading-lg text-green-600"
+          ></span>
+        </div>
+
+        <!-- Cards Container -->
+        <div
+          id="plants-container"
+          class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+        >
+          <!-- Dynamic Plant Cards will load here -->
+        </div>
+      </section>
+
+      <!-- Cart Section -->
+      <aside class="col-span-3 bg-green-50 p-4 rounded-2xl shadow">
+        <h2 class="text-xl font-bold mb-4">🛒 Cart</h2>
+        <ul id="cart-list" class="space-y-2">
+          <!-- Cart items will appear here -->
+        </ul>
+        <div class="mt-4 font-semibold text-lg">
+          Total: <span id="cart-total">0</span>৳
+        </div>
+      </aside>
+    </main>
+
+    <!-- Modal -->
+    <input type="checkbox" id="plant-modal" class="modal-toggle" />
+    <div class="modal">
+      <div class="modal-box max-w-2xl">
+        <h3 id="modal-title" class="font-bold text-lg"></h3>
+        <img
+          id="modal-image"
+          src=""
+          alt="Plant"
+          class="w-full h-64 object-cover rounded-lg mt-3"
+        />
+        <p id="modal-description" class="mt-3 text-gray-700"></p>
+        <div class="mt-3">
+          <span id="modal-category" class="badge badge-success"></span>
+          <span id="modal-price" class="ml-3 font-bold"></span>
+        </div>
+        <div class="modal-action">
+          <label for="plant-modal" class="btn">Close</label>
+        </div>
+      </div>
+    </div>
+
+    <!-- campaign section -->
+    <section class="bg-green-50 py-16">
+      <h2
+        class="flex items-center justify-center text-2xl font-semibold text-gray-800 mb-4 text-a"
+      >
+        About the Campaign
+      </h2>
+      <div
+        class="max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-12 items-center"
+      >
+        <!-- Left Image -->
+        <div class="flex justify-center">
+          <img
+            src="./B12A06-Green-Earth/assets/about.png"
+            alt="Plant"
+            class="rounded-xl shadow-lg"
+          />
+        </div>
+
+        <!-- Right Content -->
+        <div>
+          <p class="text-gray-600 leading-relaxed mb-4">
+            Green Earth is a global tree plantation initiative dedicated to
+            fighting climate change. Since our start, we’ve planted over 500,000
+            trees worldwide. By joining our campaign, you help restore forests,
+            create habitats for wildlife, and combat global warming.
+          </p>
+
+          <ul class="list-disc list-inside text-gray-700 space-y-2">
+            <li>Restoration of natural habitats</li>
+            <li>Improvement of air quality</li>
+            <li>Support for local communities</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Impact Section -->
+    <section id="impact" class="bg-green-100 py-12 mt-10">
+      <h1 class="font-semibold text-3xl text-center">Our Impact</h1>
+      <div
+        class="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-6 text-center p-8"
+      >
+        <div class="bg-white shadow-md p-6 rounded-lg hover:bg-green-300">
+          <h3 class="text-3xl font-bold text-green-700">500K+</h3>
+          <p>Trees Planted</p>
+        </div>
+        <div class="bg-white shadow-md p-6 rounded-lg hover:bg-green-300">
+          <h3 class="text-3xl font-bold text-green-700">120+</h3>
+          <p>Communities Involved</p>
+        </div>
+        <div class="bg-white shadow-md p-6 rounded-lg hover:bg-green-300">
+          <h3 class="text-3xl font-bold text-green-700">30+</h3>
+          <p>Countries Reached</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Plant a Tree Today -->
+    <section class="bg-green-800 py-12 text-white text-center">
+      <h2 class="text-2xl font-bold mb-6">Plant a Tree Today</h2>
+      <form class="max-w-md mx-auto space-y-4 bg-green-700 p-8 rounded-md">
+        <input
+          type="text"
+          placeholder="Your Name"
+          class="w-full p-3 rounded-lg text-black"
+        />
+        <input
+          type="email"
+          placeholder="Your Email Address"
+          class="w-full p-3 rounded-lg text-black"
+        />
+        <input
+          type="number"
+          placeholder="Number of Trees"
+          class="w-full p-3 rounded-lg text-slate-950"
+        />
+        <div class="mt-6">
+          <button
+            type="submit"
+            class="bg-yellow-400 text-black px-6 py-3 rounded-full w-full space-y-6"
+          >
+            Donate Now
+          </button>
+        </div>
+      </form>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-green-900 text-white text-center py-4">
+      <p>&copy; 2025 Green Earth. All Rights Reserved.</p>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="app.js"></script>
+  </body>
+</html>
