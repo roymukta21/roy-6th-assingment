@@ -7,19 +7,16 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Manrope:wght@200..800&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
       rel="stylesheet"
     />
     <script src="https://cdn.tailwindcss.com"></script>
-
     <link rel="stylesheet" href="style/style.css" />
-
     <link
-      href="https://cdn.jsdelivr.net/npm/daisyui@5"
+      href="https://cdn.jsdelivr.net/npm/daisyui@5/dist/full.css"
       rel="stylesheet"
       type="text/css"
     />
-    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
   </head>
 
   <body class="bg-green-50" style="font-family: 'Inter', sans-serif">
@@ -79,7 +76,7 @@
       <!-- Plants Section -->
       <section class="col-span-6">
         <!-- Spinner -->
-        <div id="loading-spinner" class="hidden text-center py-10">
+        <div id="spinner" class="hidden text-center py-10">
           <span
             class="loading loading-spinner loading-lg text-green-600"
           ></span>
@@ -87,7 +84,7 @@
 
         <!-- Cards Container -->
         <div
-          id="plants-container"
+          id="card-container"
           class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
         >
           <!-- Dynamic Plant Cards will load here -->
@@ -101,7 +98,7 @@
           <!-- Cart items will appear here -->
         </ul>
         <div class="mt-4 font-semibold text-lg">
-          Total: <span id="cart-total">0</span>৳
+          Total: $<span id="cart-total">0</span>
         </div>
       </aside>
     </main>
@@ -118,7 +115,7 @@
           class="w-full h-64 object-cover rounded-lg mt-3"
         />
         <p id="modal-description" class="mt-3 text-gray-700"></p>
-        <div class="mt-3">
+        <div class="mt-3 flex justify-between items-center">
           <span id="modal-category" class="badge badge-success"></span>
           <span id="modal-price" class="ml-3 font-bold"></span>
         </div>
@@ -129,9 +126,9 @@
     </div>
 
     <!-- campaign section -->
-    <section class="bg-green-50 py-16">
+    <section id="about" class="bg-green-50 py-16">
       <h2
-        class="flex items-center justify-center text-2xl font-semibold text-gray-800 mb-4 text-a"
+        class="flex items-center justify-center text-2xl font-semibold text-gray-800 mb-4"
       >
         About the Campaign
       </h2>
@@ -211,7 +208,7 @@
         <div class="mt-6">
           <button
             type="submit"
-            class="bg-yellow-400 text-black px-6 py-3 rounded-full w-full space-y-6"
+            class="bg-yellow-400 text-black px-6 py-3 rounded-full w-full"
           >
             Donate Now
           </button>
