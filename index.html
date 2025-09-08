@@ -13,6 +13,13 @@
     <script src="https://cdn.tailwindcss.com"></script>
 
     <link rel="stylesheet" href="style/style.css" />
+
+    <link
+      href="https://cdn.jsdelivr.net/npm/daisyui@5"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
   </head>
 
   <body class="bg-green-50" style="font-family: 'Inter', sans-serif">
@@ -64,7 +71,6 @@
     <main class="container mx-auto px-4 py-6 grid grid-cols-12 gap-6">
       <!-- Categories Section -->
       <aside class="col-span-3">
-        <h2 class="text-xl font-bold mb-4">🌴 Categories</h2>
         <div id="category-container" class="flex flex-col gap-2">
           <!-- Dynamic Category Buttons will load here -->
         </div>
@@ -90,7 +96,7 @@
 
       <!-- Cart Section -->
       <aside class="col-span-3 bg-green-50 p-4 rounded-2xl shadow">
-        <h2 class="text-xl font-bold mb-4">🛒 Cart</h2>
+        <h2 class="text-xl font-bold mb-4">🛒 Your Cart</h2>
         <ul id="cart-list" class="space-y-2">
           <!-- Cart items will appear here -->
         </ul>
@@ -187,18 +193,21 @@
         <input
           type="text"
           placeholder="Your Name"
-          class="w-full p-3 rounded-lg text-black"
+          class="w-full p-3 bg-white rounded-lg text-black"
         />
         <input
           type="email"
           placeholder="Your Email Address"
-          class="w-full p-3 rounded-lg text-black"
+          class="w-full p-3 bg-white rounded-lg text-black"
         />
-        <input
-          type="number"
-          placeholder="Number of Trees"
-          class="w-full p-3 rounded-lg text-slate-950"
-        />
+        <select
+          class="select select-secondary w-full p-3 bg-white rounded-lg text-black !mb-3"
+        >
+          <option disabled selected>Number of Tree</option>
+          <option>1</option>
+          <option>3</option>
+          <option>9</option>
+        </select>
         <div class="mt-6">
           <button
             type="submit"
