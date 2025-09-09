@@ -104,22 +104,18 @@
     </main>
 
     <!-- Modal -->
-    <div
-      id="modal"
-      class="fixed inset-0 bg-black bg-opacity-50 hidden items-center justify-center"
-    >
+    <dialog id="modal" class="modal modal-bottom sm:modal-middle">
       <div
-        id="modal-content"
-        class="bg-white rounded-lg shadow-lg max-w-md w-full p-5 relative"
+        class="modal-box bg-white rounded-lg shadow-lg max-w-md w-full p-5 relative"
       >
-        <button
-          onclick="closeModal()"
-          class="absolute top-2 right-2 text-gray-600 hover:text-red-500"
-        >
-          ✖
-        </button>
+        <div class="modal-action">
+          <form id="modal-content" method="dialog">
+            <!-- if there is a button in form, it will close the modal -->
+            <button class="btn z-10">Close</button>
+          </form>
+        </div>
       </div>
-    </div>
+    </dialog>
 
     <!-- campaign section -->
     <section id="about" class="bg-green-50 py-16">

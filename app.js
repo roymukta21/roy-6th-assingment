@@ -49,7 +49,7 @@ const loadCategoryPlants = async (id) => {
   // Active button state
   if (activeCategory) {
     activeCategory.classList.remove("bg-green-700", "text-white");
-    activeCategory.classList.add("bg-gray-200");
+    activeCategory.classList.add("");
   }
   activeCategory = document.getElementById(`btn-${id}`);
   activeCategory.classList.remove("bg-gray-200");
@@ -60,7 +60,8 @@ const loadCategoryPlants = async (id) => {
       `https://openapi.programming-hero.com/api/category/${id}`
     );
     const data = await res.json();
-    displayPlants(data.data);
+    console.log(data);
+    displayPlants(data.plants);
   } catch (err) {
     console.error("Category Plants Load Error:", err);
   } finally {
@@ -104,7 +105,7 @@ const displayPlants = (plants) => {
       <img class="card-img" src="${plant.image}" alt="${plant.name}">
       <div class="card-description mt-2">
         <h2 onclick="showModal('${plant.id}')" 
-         class="card-title cursor-pointer hover:underline">
+         class="card-title cursor-pointer hover:underline font-bold">
           ${plant.name}
         </h2>
         <p class="card-description overflow-hidden text-ellipsis line-clamp-2">
@@ -132,24 +133,28 @@ const displayPlants = (plants) => {
 const showModal = async (id) => {
   const modal = document.getElementById("modal");
   const modalContent = document.getElementById("modal-content");
+  console.log(id);
+  modal.showModal();
 
   try {
     const res = await fetch(
       `https://openapi.programming-hero.com/api/plant/${id}`
     );
     const data = await res.json();
-    const plant = data.data;
+    const plant = data.plants;
 
     modalContent.innerHTML = `
-      <button onclick="closeModal()" class="absolute top-2 right-2 text-gray-600 hover:text-red-500">✖</button>
+      <button onclick="closeModal()" class="absolute top-2 right-2  hover:text-red-500">✖</button>
       <img src="${plant.image}" class="w-full h-40 object-cover rounded mb-2" alt="${plant.name}">
-      <h2 class="text-xl font-bold mb-2">${plant.name}</h2>
+      <h2 onclick="showModal('${plant.id}')"
+    class="text-xl font-bold mb-2 cursor-pointer hover:text-green-600">
+    ${plant.name}</h2>
       <p class="text-gray-700 mb-2">${plant.description}</p>
       <p class="font-semibold">Category: ${plant.category}</p>
       <p class="font-semibold">Price: ৳${plant.price}</p>
     `;
-    modal.classList.remove("hidden");
-    modal.classList.add("flex");
+    // modal.classList.remove("hidden");
+    // modal.classList.add("flex");
   } catch (err) {
     console.error("Modal Load Error:", err);
   }
@@ -158,7 +163,7 @@ const showModal = async (id) => {
 // Close Modal
 const closeModal = () => {
   const modal = document.getElementById("modal");
-  modal.classList.add("hidden");
+  modal.classList.add("");
   modal.classList.remove("flex");
 };
 
