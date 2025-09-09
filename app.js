@@ -49,8 +49,9 @@ const loadCategoryPlants = async (id) => {
 
   // Active button state
   if (activeCategory) {
+    console.log(activeCategory);
     activeCategory.classList.remove("bg-green-700", "text-white");
-    activeCategory.classList.add("");
+    activeCategory.classList;
   }
   activeCategory = document.getElementById(`btn-${id}`);
   activeCategory.classList.remove("bg-gray-200");
