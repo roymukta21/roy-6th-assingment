@@ -5,6 +5,7 @@ let activeCategory = null;
 // Spinner toggle
 const toggleSpinner = (show) => {
   const spinner = document.getElementById("spinner");
+  console.log(spinner);
   spinner.classList.toggle("hidden", !show);
 };
 
