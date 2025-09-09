@@ -1,6 +1,6 @@
 // Global cart
 let cart = [];
-// let activeCategory = null;
+let activeCategory = null;
 
 // Spinner toggle
 const toggleSpinner = (show) => {
@@ -34,7 +34,7 @@ const displayCategories = (categories) => {
     div.innerHTML = `
       <button id="btn-${category.id}"
         onclick="loadCategoryPlants('${category.id}')"
-        class="hover:w-36 h-10 hover:bg-green-700 hover:text-white rounded-lg m-2 transition duration-300 whitespace-nowrap">
+        class="hover:w-36 h-10 hover:bg-green-700 hover:text-white hover:rounded-md">
         ${category.category_name}
       </button>
     `;
@@ -68,38 +68,67 @@ const loadCategoryPlants = async (id) => {
   }
 };
 
-// Display Plants in cards
+// Load and display all plants
 const loadPlants = async () => {
   try {
+    toggleSpinner(true);
     const res = await fetch("https://openapi.programming-hero.com/api/plants");
     const data = await res.json();
-    const plants = data.plants;
-    displayPlants(plants);
+    displayPlants(data.plants);
   } catch (err) {
     console.error("Error loading plants:", err);
+  } finally {
+    toggleSpinner(false);
   }
 };
 
+// Limit description words
+const limitDescription = (text, wordLimit = 20) => {
+  const words = text.split(" ");
+  if (words.length > wordLimit) {
+    return words.slice(0, wordLimit).join(" ") + "...";
+  }
+  return text;
+};
+
+// Display Plants
 const displayPlants = (plants) => {
   const container = document.getElementById("card-container");
   container.innerHTML = "";
+
   plants.forEach((plant) => {
     const card = document.createElement("div");
     card.classList.add("card");
 
     card.innerHTML = `
-          <img class="card-img" src="${plant.image}" alt="${plant.name}">
-          <h2 class="card-title">${plant.name}</h2>
-          <button class="card-button">Add to Cart</button>
-        `;
+      <img class="card-img" src="${plant.image}" alt="${plant.name}">
+      <div class="card-description mt-2">
+        <h2 onclick="showModal('${plant.id}')" 
+         class="card-title cursor-pointer hover:underline">
+          ${plant.name}
+        </h2>
+        <p class="card-description overflow-hidden text-ellipsis line-clamp-2">
+          ${limitDescription(plant.description)}
+        </p>
+        <div class="flex justify-between items-center mt-2">
+          <p class="card-category text-green-700 bg-green-200 rounded-full p-1">
+            ${plant.category}
+          </p>
+          <p class="card-price font-semibold text-green-700">৳${plant.price}</p>
+        </div>
+      </div>
+      <button class="card-button w-full " onclick="addToCart('${plant.id}', '${
+      plant.name
+    }', ${plant.price})">
+        Add to Cart
+      </button>
+    `;
+
     container.appendChild(card);
   });
 };
 
-// Call function
-loadPlants();
-
-// Show Modal with details
+// Show Modal
 const showModal = async (id) => {
   const modal = document.getElementById("modal");
   const modalContent = document.getElementById("modal-content");
@@ -109,14 +138,15 @@ const showModal = async (id) => {
       `https://openapi.programming-hero.com/api/plant/${id}`
     );
     const data = await res.json();
-    const plant = data;
+    const plant = data.data;
 
     modalContent.innerHTML = `
+      <button onclick="closeModal()" class="absolute top-2 right-2 text-gray-600 hover:text-red-500">✖</button>
       <img src="${plant.image}" class="w-full h-40 object-cover rounded mb-2" alt="${plant.name}">
       <h2 class="text-xl font-bold mb-2">${plant.name}</h2>
-      <p class="text-gray-700 mb-1">${plant.description}</p>
+      <p class="text-gray-700 mb-2">${plant.description}</p>
       <p class="font-semibold">Category: ${plant.category}</p>
-      <p class="font-semibold">Price: $${plant.price}</p>
+      <p class="font-semibold">Price: ৳${plant.price}</p>
     `;
     modal.classList.remove("hidden");
     modal.classList.add("flex");
@@ -132,19 +162,17 @@ const closeModal = () => {
   modal.classList.remove("flex");
 };
 
-// Add to Cart
+// Cart Functions
 const addToCart = (id, name, price) => {
   cart.push({ id, name, price });
   renderCart();
 };
 
-// Remove from Cart
 const removeFromCart = (index) => {
   cart.splice(index, 1);
   renderCart();
 };
 
-// Render Cart items
 const renderCart = () => {
   const cartList = document.getElementById("cart-list");
   const cartTotal = document.getElementById("cart-total");
@@ -157,7 +185,7 @@ const renderCart = () => {
     const li = document.createElement("li");
     li.className = "flex justify-between items-center border-b pb-1";
     li.innerHTML = `
-      <span>${item.name} - $${item.price}</span>
+      <span>${item.name} - ৳${item.price}</span>
       <button onclick="removeFromCart(${index})" class="text-red-500">❌</button>
     `;
     cartList.appendChild(li);
@@ -168,3 +196,4 @@ const renderCart = () => {
 
 // Init
 loadCategories();
+loadPlants();

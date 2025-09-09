@@ -30,3 +30,6 @@
   flex-wrap: wrap;
   justify-content: center;
 }
+.card-description {
+  min-height: 80px;
+}
